@@ -52,6 +52,9 @@ html[data-theme=dark] .rete-box .marte{opacity:.66;box-shadow:0 0 34px 10px rgba
 .srv-home-more{text-align:center;margin-top:1.6rem}
 .srv-home-more a{display:inline-block;padding:.55rem 1.4rem;border-radius:999px;border:1px solid rgba(0,0,0,.2);text-decoration:none;font-weight:600}
 html[data-theme="dark"] .srv-home-more a{border-color:rgba(255,255,255,.3)}
+/* DESKTOP LARGO (>=1000px): sito a 1200px, card servizi in 4 colonne con ultima riga centrata, testo hero in colonna da 820px */
+@media (min-width:1000px){.srv-home-grid{display:flex;flex-wrap:wrap;justify-content:center;max-width:1120px}.srv-home-card{flex:0 0 calc((100% - 48px)/4)}}
+.rete-box p{max-width:820px;margin-left:auto;margin-right:auto}
 @media (max-width:900px){.srv-home-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:600px){.srv-home-grid{grid-template-columns:1fr}.srv-home-card{min-height:0}}
 @media (prefers-reduced-motion:reduce){.srv-home-card,.prj-home-card{transition:none}.srv-home-card:hover,.prj-home-card:hover{transform:none}}
