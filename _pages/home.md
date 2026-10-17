@@ -73,6 +73,7 @@ html[data-theme="dark"] .srv-home-more a{border-color:rgba(255,255,255,.3)}
 .prj-home-more{text-align:center;margin-top:1.6rem}
 .prj-home-more a{display:inline-block;padding:.55rem 1.4rem;border-radius:999px;border:1px solid rgba(0,0,0,.2);text-decoration:none;font-weight:600}
 html[data-theme="dark"] .prj-home-more a{border-color:rgba(255,255,255,.3)}
+@media (min-width:1000px){.prj-home-grid{display:flex;flex-wrap:wrap;justify-content:center;max-width:1120px}.prj-home-card{flex:0 0 calc((100% - 48px)/4)}}
 @media (max-width:900px){.prj-home-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:600px){.prj-home-grid{grid-template-columns:1fr}.prj-home-card{min-height:0}}
 </style>
