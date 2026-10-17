@@ -1,0 +1,19 @@
+{% comment %}
+  MODULO E-COMMERCE: voce di menu Negozio con le categorie. Richiamata da _includes/header.liquid perche' la pagina /negozio/
+  ha nav_include: modules/ecommerce/menu.liquid nel front matter. Usa la variabile p del ciclo del menu.
+{% endcomment %}
+<li class="nav-item dropdown {% if page.url contains '/negozio/' or page.url contains '/carrello/' %}active{% endif %}">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown-negozio" role="button" data-nav-dropdown-toggle="true" aria-haspopup="true" aria-expanded="false">{{- p.title -}}</a>
+                  <div class="dropdown-menu dropdown-menu-right nz-menu" aria-labelledby="navbarDropdown-negozio">
+                    <a class="dropdown-item" href="{{ '/negozio/' | relative_url }}">Tutto il negozio</a>
+                    <div class="dropdown-divider"></div>
+                    {% for c in site.data.catalogo.categorie %}
+                      {% assign nz_prod = site.data.catalogo.prodotti | where_exp: 'x', 'x.categoria == c.id and x.visibile != false' %}
+                      {% if nz_prod.size > 0 %}
+                        <a class="dropdown-item nz-catlink" href="{{ '/negozio/categoria/' | append: c.id | append: '/' | relative_url }}">{{ c.icona }} {{ c.nome }}</a>
+                      {% endif %}
+                    {% endfor %}
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ '/carrello/' | relative_url }}">Carrello</a>
+                  </div>
+                </li>

@@ -1,0 +1,13 @@
+{% comment %}
+  MODULO E-COMMERCE, hook navbar: icona carrello con contatore e anteprima (stile PrestaShop), subito dopo il brand.
+  CSS e JS non si caricano qui ma negli hook head e footer. data-catalogo = JSON dei prodotti visibili di site.data.catalogo (serve a contare e sommare in tutte le pagine).
+  Va sempre passato da | escape (e' in un attributo) e i nomi da | jsonify. Il numero lo scrive carrello.js (localStorage).
+{% endcomment %}
+{% capture nz_cat %}{% for b in site.data.catalogo.prodotti %}{% unless b.visibile == false %}{"id":{{ b.id | jsonify }},"p":{{ b.prezzo_centesimi | default: 0 | jsonify }},"n":{{ b.nome | jsonify }},"t":{{ b.tipo | default: 'fisico' | jsonify }},"u":{{ '/negozio/' | append: b.id | append: '/' | relative_url | jsonify }},"i":{% if b.immagine and b.immagine != '' %}{% if b.immagine contains '://' %}{{ b.immagine | jsonify }}{% else %}{{ '/' | append: b.immagine | relative_url | jsonify }}{% endif %}{% else %}""{% endif %},"e":{{ b.icona | default: '' | jsonify }}},{% endunless %}{% endfor %}{% endcapture %}
+        <div class="nz-cartw">
+          <a id="nz-cart" class="nz-cart" href="{{ '/carrello/' | relative_url }}" data-catalogo="{{ nz_cat | escape }}" aria-label="Carrello">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2.5 3.5h2.6l2.3 11.2a1.6 1.6 0 0 0 1.6 1.3h8.5a1.6 1.6 0 0 0 1.6-1.2l1.5-6.8H6"/></svg>
+            <span class="nz-n">(0)</span>
+          </a>
+          <div class="nz-prev" id="nz-prev"></div>
+        </div>

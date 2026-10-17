@@ -1,0 +1,92 @@
+{
+  "installed": {
+    "sitemap": {
+      "name": "Sitemap XML",
+      "enabled": true,
+      "hooks": {},
+      "config_fields": [
+        {
+          "key": "exclude_paths",
+          "type": "textarea",
+          "label": "Percorsi da escludere (uno per riga, anche parziali: es. /admin/, /tag/, /category/, /page/)",
+          "default": "/admin/\n/_pages/\n/tag/\n/category/\n/page/"
+        },
+        {
+          "key": "include_lastmod",
+          "type": "checkbox",
+          "label": "Includi la data di ultima modifica (lastmod) dove disponibile",
+          "default": "true"
+        }
+      ],
+      "roots": [
+        "sitemap.xml"
+      ]
+    },
+    "sito-offline": {
+      "name": "Sito Offline",
+      "enabled": false,
+      "hooks": {},
+      "config_fields": [
+        {
+          "key": "offline",
+          "label": "Sito offline (blocca tutto il sito prima del lancio)",
+          "type": "checkbox",
+          "default": "false"
+        },
+        {
+          "key": "messaggio",
+          "label": "Messaggio mostrato ai visitatori",
+          "type": "textarea",
+          "default": "Stiamo preparando il lancio. Torna a trovarci a breve."
+        }
+      ],
+      "roots": []
+    },
+    "ecommerce": {
+      "name": "Negozio (e-commerce)",
+      "enabled": false,
+      "hooks": {
+        "head": "head.liquid",
+        "footer": "footer.liquid",
+        "navbar": "navbar.liquid"
+      },
+      "config_fields": [
+        {
+          "key": "tracker",
+          "type": "text",
+          "label": "Indirizzo del foglio Google per gli ordini (Apps Script). Vuoto = l'ordine non parte",
+          "default": ""
+        },
+        {
+          "key": "nota_ordine",
+          "type": "textarea",
+          "label": "Nota mostrata nel passo Pagamento",
+          "default": "Modalità di prova: nessun importo viene addebitato e non vengono chiesti numeri di carta. Confermando accetti le condizioni di vendita e l'informativa privacy."
+        }
+      ],
+      "roots": [
+        "_pages/carrello.md",
+        "_pages/grazie.md",
+        "_pages/negozio.md",
+        "_pages/ordine.md",
+        "_plugins/ecommerce.rb"
+      ],
+      "admin": {
+        "script": "admin.js",
+        "group": "Negozio",
+        "menu": [
+          {
+            "p": "ecom",
+            "label": "Prodotti",
+            "icon": "🛒"
+          },
+          {
+            "p": "ecomcat",
+            "label": "Categorie prodotti",
+            "icon": "☰"
+          }
+        ]
+      }
+    }
+  }
+}
