@@ -45,6 +45,8 @@
       <meta http-equiv="refresh" content="3; url={{ redirect }}">
     {% endif %}
     {% include head.liquid %}
+    {% comment %} Sito di test (indirizzo github.io, niente dominio proprio): non farlo indicizzare da Google. Sul dominio vero (CNAME) la riga sparisce da sola. {% endcomment %}
+    {% if site.url contains 'github.io' %}<meta name="robots" content="noindex, nofollow">{% endif %}
   </head>
 
   <!-- Body -->
